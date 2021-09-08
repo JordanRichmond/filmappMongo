@@ -7,15 +7,12 @@ const connection = async (crudFunc, dataObj) => {
     try {
         await client.connect();
         const db = client.db("movies");
-        const collection = db.collection("movie")
-        // await crudFunc(collection, dataObj)
-        await collection.insertOne({name: "Steve"});
+        const collection = db.collection("movie");
+        await crudFunc(collection, dataObj);
         client.close();
-    } catch (error) {
+    }   catch (error) {
         console.log(error);
     }
 };
-
-connection();
 
 module.exports = connection;
